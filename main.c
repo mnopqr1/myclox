@@ -27,7 +27,7 @@ int main(int argc, const char* argb[]) {
      writeChunk(&chunk, OP_RETURN, 9);
      writeChunk(&chunk, OP_RETURN, 9); */
     
-  disassembleChunk(&chunk, "test chunk");
+  // disassembleChunk(&chunk, "test chunk");
   interpret(&chunk);
   
   freeVM();
