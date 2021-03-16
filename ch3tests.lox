@@ -1,0 +1,59 @@
+print "hello world";
+
+fun hello(name) {
+    print "hello " + name;
+}
+
+hello("sam");
+
+class Animal {
+    init(name, species) {
+      	this.name = name;
+		this.species = species;
+	}
+
+	talk() {
+		print "My name is " + this.name + " and I am a " + this.species;
+	}
+}
+
+var a = Animal("tweety", "bird");
+a.talk();
+
+class Mammal < Animal {
+
+	// several constructors
+
+	init(name) {
+		super.init(name, "mammal");
+	}
+
+	init(name, species) {
+		super.init(name, species);
+	}
+}
+
+class Hippo < Mammal {
+	init(name) {
+		super.init(name, "hippo");
+	}
+
+	set_name(name) {
+		this.name = name;
+	}
+}
+
+var b = Hippo("johnny");
+b.talk();
+
+// object references / copy
+
+var c = b;
+print "The animal in c :";
+c.talk();
+print "Changing b's name to paul.";
+b.set_name("paul");
+print "The animal in b : ";
+b.talk();
+print "The animal in c : ";
+c.talk();
