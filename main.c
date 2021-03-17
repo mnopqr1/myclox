@@ -62,24 +62,26 @@ int main(int argc, const char* argb[]) {
   writeChunk(&chunk, OP_RETURN, 123); */
 
   /* Challenge 15.1 */
-  // return 1 * 2 + 3
+  // 1 * 2 + 3
   int constant = addConstant(&chunk, 1);
   writeChunk(&chunk, OP_CONSTANT, 100);
   writeChunk(&chunk, constant, 100);
 
-  constant = addConstant(&chunk, 2);
+  int constant2 = addConstant(&chunk, 2);
   writeChunk(&chunk, OP_CONSTANT, 100);
-  writeChunk(&chunk, constant, 100);
+  writeChunk(&chunk, constant2, 100);
 
-  writeChunk(&chunk, OP_MULTIPLY, 100); 
-  
-  constant = addConstant(&chunk, 3);
-  writeChunk(&chunk, constant, 100);
+  writeChunk(&chunk, OP_MULTIPLY, 100);
+
+  int constant3 = addConstant(&chunk, 3);
+  writeChunk(&chunk, OP_CONSTANT, 100);
+  writeChunk(&chunk, constant3, 100);
 
   writeChunk(&chunk, OP_ADD, 100);
-  writeChunk(&chunk, OP_RETURN, 100);
-  /*
-  // return 1 + 2 * 3
+
+  // writeChunk(&chunk, OP_RETURN, 100);
+  
+  // 1 + 2 * 3
   constant = addConstant(&chunk, 1);
   writeChunk(&chunk, OP_CONSTANT, 200);
   writeChunk(&chunk, constant, 200);
@@ -89,11 +91,12 @@ int main(int argc, const char* argb[]) {
   writeChunk(&chunk, constant, 200);
   
   constant = addConstant(&chunk, 3);
+  writeChunk(&chunk, OP_CONSTANT, 200);
   writeChunk(&chunk, constant, 200);
   writeChunk(&chunk, OP_MULTIPLY, 200);
 
   writeChunk(&chunk, OP_ADD, 200);
-  writeChunk(&chunk, OP_RETURN, 200); */
+  writeChunk(&chunk, OP_RETURN, 200);
   
   interpret(&chunk); 
   
