@@ -103,6 +103,8 @@ int main(int argc, const char* argb[]) {
   writeChunk(&chunk, OP_RETURN, 200); */
 
   /* Challenge 15.4 */
+  // With pop-then-push implementation of OP_NEGATE: 0.416 sec
+  // With in-place implementation: 0.201 sec 
   int constant = addConstant(&chunk, 1);
   writeChunk(&chunk, OP_CONSTANT, 100);
   writeChunk(&chunk, constant, 100);
