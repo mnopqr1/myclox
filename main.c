@@ -1,7 +1,11 @@
+#include <time.h>
+#include <stdio.h>
+
 #include "common.h"
 #include "chunk.h"
 #include "debug.h"
 #include "vm.h"
+
 
 int main(int argc, const char* argb[]) {
   initVM();
@@ -63,7 +67,7 @@ int main(int argc, const char* argb[]) {
 
   /* Challenge 15.1 */
   // 1 * 2 + 3
-  int constant = addConstant(&chunk, 1);
+  /*  int constant = addConstant(&chunk, 1);
   writeChunk(&chunk, OP_CONSTANT, 100);
   writeChunk(&chunk, constant, 100);
 
@@ -96,9 +100,22 @@ int main(int argc, const char* argb[]) {
   writeChunk(&chunk, OP_MULTIPLY, 200);
 
   writeChunk(&chunk, OP_ADD, 200);
+  writeChunk(&chunk, OP_RETURN, 200); */
+
+  /* Challenge 15.4 */
+  int constant = addConstant(&chunk, 1);
+  writeChunk(&chunk, OP_CONSTANT, 100);
+  writeChunk(&chunk, constant, 100);
+
+  for (int i = 0; i < 100000001; i++)
+    writeChunk(&chunk, OP_NEGATE, i);
+
   writeChunk(&chunk, OP_RETURN, 200);
-  
-  interpret(&chunk); 
+
+clock_t begin = clock();
+  interpret(&chunk);
+clock_t end = clock();
+printf("Time spent interpreting: %f sec.", (double) (end - begin) / CLOCKS_PER_SEC);
   
   freeVM();
   freeChunk(&chunk);
